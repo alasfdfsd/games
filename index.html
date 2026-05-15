@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Unblocked Web Game</title>
+    <style>
+        body { background: #222; color: #fff; text-align: center; font-family: sans-serif; }
+        canvas { background: #111; border: 2px solid #555; display: block; margin: 20px auto; }
+    </style>
+</head>
+<body>
+    <h1>Arrow Key Game</h1>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        let x = 180, y = 180, size = 40, speed = 8;
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#00ffcc";
+            ctx.fillRect(x, y, size, size);
+            requestAnimationFrame(draw);
+        }
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft" && x > 0) x -= speed;
+            if (e.key === "ArrowRight" && x < canvas.width - size) x += speed;
+            if (e.key === "ArrowUp" && y > 0) y -= speed;
+            if (e.key === "ArrowDown" && y < canvas.height - size) y += speed;
+        });
+        draw();
+    </script>
+</body>
+</html>
